@@ -9,10 +9,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  Widget _buildNote(int index) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+    child: ListTile(
+      title: const Text('Note Title'),
+        subtitle: const Text('Aug 15, 2024  - High'),
+        trailing: Checkbox(
+          onChanged: (value){
+            print(value);
+          },
+          activeColor: Theme.of(context).primaryColor,
+          value: true,
+        ),
+    ),
+    );
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.grey,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
         onPressed: (){},
@@ -20,14 +40,14 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 80.0),
-          itemCount: 1,
+          itemCount: 10,
           itemBuilder: (BuildContext context, int index){
           if(index == 0) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
+            return const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const <Widget>[
+                    children: <Widget>[
                       Text(
                         'My Notes',
                         style: TextStyle(
@@ -49,6 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
             );
             }
+          return _buildNote(index);
           }
       ),
     );
